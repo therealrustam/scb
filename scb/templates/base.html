@@ -3,9 +3,21 @@
 <head>
   <meta charset="utf-8">
   <title>{% block title %}Django Auth Tutorial{% endblock %}</title>
+  {% load static %}
+  <link rel="stylesheet" href="/static/css/bootstrap.min.css" type="text/css">
 </head>
 <body>
-  <main>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
+  <div class="container-fluid">
+    <div>
+    <p class="text-light">
+      <h1 class="text-light">Тестовое задание</h1>
+    </p>
+    </div>
+
+  </div>
+  </nav>
+    <main>
     {% block content %}
     {% endblock %}
   </main>

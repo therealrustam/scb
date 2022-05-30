@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}Таблица авторов{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<div class = "jumbotron">
+    <br>
+    <div class = "container">
+  <a href="/" class="btn btn-danger">На главную</a>
+  <br>
+  <br>
+  <div class = "jumbotron">
+    <div class = "container">
+        <h1> Таблица авторов </h1>
+<table class="table">
+    <thead>
+  <tr>
+    <th>Имя</th>
+    <th>Фамилия</th> 
+    <th>Отчество</th>
+    <th>Дата рождения</th>
+    <th>Количество статей</th>
+  </tr>
+</thead>        
+{% load multifor %}
+  {% for author in authors; sum in sum_posts %}
+  <tr>
+  <td>
+    {{ author.first_name }}
+  </td>
+  <td>
+    {{ author.last_name }}
+  </td>
+  <td>
+    {{ author.patronymic }}
+  </td>
+  <td>
+    {{ author.date_of_birth }}
+  </td>
+  <td>
+    {{ sum }}
+  </td>
+</tr>
+  {% endfor %}
+{% else %}
+  <p>You are not logged in</p>
+  <a href="{% url 'login' %}">Log In</a>
+{% endif %}
+{% endblock %}

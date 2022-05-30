@@ -1,22 +1,36 @@
 {% extends 'base.html' %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Главная страница{% endblock %}
 
 {% block content %}
 {% if user.is_authenticated %}
-  Hi {{ user.username }}!
-  {% for post in posts %}
-  <h1>
+<div class = "jumbotron">
+  <br>
+  <div class = "container">
+<a href="/authors" class="btn btn-danger">Список авторов</a>
+<br>
+<br>
+<h1> Последние добавленные статьи </h1>
+<br>
+</div>  
+</div>  
+{% for post in posts %}
+  <div class = "jumbotron">
+    <div class = "container">
+  <h2>
     {{ post.title }}
-  </h1>
-  <p>
+  </h2>
+  <p class="text-justify">
     {{ post.text }}
   </p>
-  <p>
+  <h6>Авторы:
+    <br>
     {% for author in post.authors.all %}
     {{ author.get_full_name }}
+    </div>
+  </div>
 {% endfor %}
-  </p>
+</h6>
   {% endfor %}
 {% else %}
   <p>You are not logged in</p>
