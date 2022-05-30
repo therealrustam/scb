@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+  Hi {{ user.username }}!
+  {% for post in posts %}
+  <h1>
+    {{ post.title }}
+  </h1>
+  <p>
+    {{ post.text }}
+  </p>
+  <p>
+    {% for author in post.authors.all %}
+    {{ author.get_full_name }}
+{% endfor %}
+  </p>
+  {% endfor %}
+{% else %}
+  <p>You are not logged in</p>
+  <a href="{% url 'login' %}">Log In</a>
+{% endif %}
+{% endblock %}
