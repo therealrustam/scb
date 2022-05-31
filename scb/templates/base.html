@@ -1,25 +1,45 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
-  <title>{% block title %}Django Auth Tutorial{% endblock %}</title>
+  <title>{% block title %}Не загрузилось{% endblock %}</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $(".btn.btn-secondary").click(function () {
+        $(this).closest("div").hide();
+      });
+    });
+  </script>
   {% load static %}
   <link rel="stylesheet" href="/static/css/bootstrap.min.css" type="text/css">
 </head>
-<body>
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
-  <div class="container-fluid">
-    <div>
-    <p class="text-light">
-      <h1 class="text-light">Тестовое задание</h1>
-    </p>
-    </div>
 
-  </div>
-  </nav>
-    <main>
+<body>
+  <header>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
+      <div class="container">
+        <div>
+          <p class="text-light">
+          <h1 class="text-light">Тестовое задание</h1>
+          <h4 class="text-light">Пользователь: {{user.username}}</h4>
+          <a class="text-light" href="/accounts/logout/">Выход</a>
+          </p>
+        </div>
+
+      </div>
+    </nav>
+  </header>
+  <main>
     {% block content %}
     {% endblock %}
   </main>
+
+  <footer class="border-top text-center py-3">
+    <br>
+    <p>© {% now 'Y' %} Copyright <span style="color:red">Рустам</span> Вахитов</p>
+  </footer>
 </body>
+
 </html>

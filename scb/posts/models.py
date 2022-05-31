@@ -1,3 +1,7 @@
+"""
+Создание основых моделей приложения.
+"""
+
 from django.db import models
 
 
@@ -30,6 +34,12 @@ class Author(models.Model):
         """
         return f'{self.last_name} {self.first_name} {self.patronymic}'
 
+    def __str__(self):
+        """"
+        Метод получения фамилии и имени авторов.
+        """
+        return f'{self.last_name} {self.first_name}'
+
 
 class Post(models.Model):
     """
@@ -39,10 +49,14 @@ class Post(models.Model):
                              verbose_name='Заголовок статьи',
                              help_text='Введите заголовок статьи')
     text = models.TextField(verbose_name='Текст статьи',
-                            help_text='Введите текст статьи')
+                            help_text='Введите текст статьи',
+                            )
     authors = models.ManyToManyField(Author,
                                      through='AuthorsPosts',
-                                     related_name='posts')
+                                     related_name='posts',
+                                     verbose_name='Авторы',
+                                     help_text='Выберите автора статьи')
+    pub_date = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         """
@@ -50,6 +64,7 @@ class Post(models.Model):
         """
         verbose_name = 'Статья'
         verbose_name_plural = 'Статьи'
+        ordering = ('-pub_date', )
 
     def __str__(self):
         """"

@@ -2,15 +2,15 @@
 
 {% block title %}Login{% endblock %}
 
-{% block content %}  
-<div class = "jumbotron">
-    <div class = "container">
-<h2>Вход</h2>
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit" class="btn btn-danger">Войти</button>
-</form>
-</div>
+{% block content %}
+<div class="jumbotron">
+  <div class="container">
+    <h2>Вход</h2>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-danger">Войти</button>
+    </form>
+  </div>
 </div>
 {% endblock %}

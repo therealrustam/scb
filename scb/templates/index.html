@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+  <br>
+  <div class="container">
+    <a href="authors/" class="btn btn-danger">Список авторов</a>
+    <a href="posts/" class="btn btn-danger">Написать статью</a>
+    <br>
+    <br>
+    <h1> Последние добавленные статьи </h1>
+    <br>
+  </div>
+</div>
+{% for post in posts %}
+<div class="jumbotron">
+  <div class="container">
+    <h2>
+      {{ post.title }}
+    </h2>
+    <p class="text-justify">
+      {{ post.text }}
+    </p>
+    <h6>Авторы:
+      <br>
+      {% for author in post.authors.all %}
+      {{ author.get_full_name }}
+      <br>
+      {% endfor %}
+      <br>
+      <a href="posts/{{post.id}}/edit" class="btn btn-dark">Редактировать</a>
+      <button type="button" class="btn btn-secondary">Скрыть</button>
+      <br>
+  </div>
+</div>
+</h6>
+<br>
+<br>
+{% endfor %}
+{% endblock %}

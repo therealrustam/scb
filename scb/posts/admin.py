@@ -24,7 +24,7 @@ class AuthorAdmin(admin.ModelAdmin):
 
 class PostAdmin(admin.ModelAdmin):
     """
-    Параметры админ зоны тэгов.
+    Параметры админ зоны статей.
     """
     inlines = (AuthorsPostsInline,)
     list_display = ('title', 'text')
